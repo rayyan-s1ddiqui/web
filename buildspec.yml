@@ -2,14 +2,14 @@ version: 0.2
 env:
   variables:
     PORT: 80
-    REPOSITORY_URI: "968020774214.dkr.ecr.us-east-1.amazonaws.com/web"
+    REPOSITORY_URI: "537678174298.dkr.ecr.us-east-1.amazonaws.com/web"
 
 phases:
   pre_build:
     commonds:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 968020774214.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 537678174298.dkr.ecr.us-east-1.amazonaws.com
 
   build:  
     commands:
@@ -22,4 +22,4 @@ phases:
       - echo build completed on `date`
       - echo Pushing the docker image...
       - docker push $REPOSITORY_URI:latest
-      - aws ecs update-service --cluster default --service web --force-new-deployment
+      - aws ecs update-service --cluster web-cluster --service web --force-new-deployment
