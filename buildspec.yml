@@ -6,8 +6,8 @@ env:
 
 phases:
   pre_build:
-    commonds:
-      - echo Logging in to Amazon ECR...
+    commands:
+      - echo Logging into Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 537678174298.dkr.ecr.us-east-1.amazonaws.com
 
