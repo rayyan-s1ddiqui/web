@@ -2,7 +2,7 @@ version: 0.2
 env:
   variables:
     PORT: 80
-    REPOSITORY_URI: "481974607063.dkr.ecr.us-east-1.amazonaws.com/web"
+    REPOSITORY_URI: "769146158686.dkr.ecr.ap-south-1.amazonaws.com/web"
 
 phases:
   phases:
