@@ -27,6 +27,10 @@ pipeline {
         sh 'docker push starkz09/web'
       }
     }
+
+    stage ('Scan Image') {
+      steps {
+        sh 'trivy image starkz09/web'  
   }
   post {
     always {
