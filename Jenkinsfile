@@ -1,9 +1,15 @@
 pipeline {
    agent any
    environment {
-         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
    }
    stages {
+     stage ('scm checkout') {
+       steps {
+         git 'https://github.com/ShashikantSingh09/web.git'
+       }
+     }
+
      stage ('build') {
        steps {
          sh 'docker build -t starkz09/web .'
