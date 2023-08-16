@@ -27,13 +27,13 @@ pipeline {
         sh 'docker push starkz09/web'
       }
     }
-
-    stage ('Scan Image') {
+    
+    stage ('Scan') {
       steps {
         sh 'trivy image starkz09/web'
       }
     }
-	
+  }
   post {
     always {
       sh 'docker logout'
