@@ -6,7 +6,7 @@ pipeline {
    stages {
      stage ('scm checkout') {
        steps {
-         git 'https://github.com/ShashikantSingh09/web.git'
+         git branch: 'main', credentialsId: 'github-jenkins', url: 'https://github.com/ShashikantSingh09/web.git'
        }
      }
 
