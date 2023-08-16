@@ -30,8 +30,10 @@ pipeline {
 
     stage ('Scan Image') {
       steps {
-        sh 'trivy image starkz09/web'  
-  }
+        sh 'trivy image starkz09/web'
+      }
+    }
+	
   post {
     always {
       sh 'docker logout'
