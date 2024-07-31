@@ -18,20 +18,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  snyk:
-    needs: sonarcloud
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/php@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
-        with:
-          command: monitor
-
   zap_scan:
-    needs: snyk
     runs-on: ubuntu-latest
     name: zap
     steps:
