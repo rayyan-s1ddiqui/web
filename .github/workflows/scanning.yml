@@ -20,19 +20,19 @@ jobs:
 
   zap_scan:
     runs-on: ubuntu-latest
-    name: Scan the webapplication
+    name: Scan the web application
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: master
-
+          ref: main
       - name: ZAP Scan
-        uses: zaproxy/action-api-scan@v0.7.0
+        uses: zaproxy/action-baseline@v0.6.1
         with:
-          token: ${{ secrets.GIT_TOKEN }}
-          docker_name: 'zaproxy/zap-stable:latest'
-          format: openapi
+          docker_name: 'owasp/zap2docker-stable'
+          target: 'http://testphp.vulnweb.com/'
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
           target: 'https://www.zaproxy.org/'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
