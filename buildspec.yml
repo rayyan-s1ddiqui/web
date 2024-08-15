@@ -24,4 +24,4 @@ phases:
       - echo build completed on `date`
       - echo Pushing the docker image...
       - docker push $REPOSITORY_URI:latest
-      - aws ecs update-service --cluster web-cluster --service web-service --force-new-deployment
+      - aws ecs update-service --cluster test --service web-service --force-new-deployment
