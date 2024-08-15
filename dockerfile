@@ -1,8 +1,6 @@
-FROM ubuntu
-RUN apt update
-RUN apt install apache2 -y
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y apache2
 WORKDIR /var/www/html
-RUN rm -rf index.html
-COPY . /var/www/html
 EXPOSE 80
-ENTRYPOINT apachectl -D FOREGROUND
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+
