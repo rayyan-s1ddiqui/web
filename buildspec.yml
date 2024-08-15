@@ -2,7 +2,7 @@ version: 0.2
 env:
   variables:
     PORT: 80
-    REPOSITORY_URI: "647495571141.dkr.ecr.us-east-1.amazonaws.com/web"
+    REPOSITORY_URI: "654654357080.dkr.ecr.us-east-1.amazonaws.com/web"
 
 phases:
   phases:
@@ -10,7 +10,7 @@ phases:
     commands:
       - echo Logging into Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 647495571141.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 654654357080.dkr.ecr.us-east-1.amazonaws.com
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:  
@@ -24,8 +24,4 @@ phases:
       - echo build completed on `date`
       - echo Pushing the docker image...
       - docker push $REPOSITORY_URI:latest
-      #- aws ecs update-service --cluster web-cluster --service web-service --force-new-deployment
-      - echo Writing image definitions file...
-      - printf '[{"name":"'$ecs_container_name'","imageUri":"%s"}]' $REPOSITORY_URI:latest > imagedefinitions.json
-artifacts:
-    files: imagedefinitions.json
+      - aws ecs update-service --cluster web-cluster --service web-service --force-new-deployment
