@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'starkz09.jfrog.io/admin-web/web'
-        DOCKER_REGISTRY = 'https://starkz09.jfrog.io'
+        DOCKER_IMAGE = 'cloudsec.jfrog.io/admin-web/web'
+        DOCKER_REGISTRY = 'https://cloudsec.jfrog.io'
         DOCKER_REPO = 'admin-web'
         ARTIFACTORY_CREDENTIALS = credentials('jfrog')
         AWS_CREDENTIALS = credentials('aws-key')
