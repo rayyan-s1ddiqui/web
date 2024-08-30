@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'cloudsec.jfrog.io/admin-web/web'
-        DOCKER_REGISTRY = 'https://cloudsec.jfrog.io'
+        DOCKER_REGISTRY = 'cloudsec.jfrog.io'
         DOCKER_REPO = 'admin-web'
         ARTIFACTORY_CREDENTIALS = credentials('jfrog')
         AWS_CREDENTIALS = credentials('aws-key')
