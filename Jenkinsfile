@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'cloudsec.jfrog.io/admin-web/web'
+        DOCKER_IMAGE = 'cloudsec.jfrog.io/security-docker/web'
         DOCKER_REGISTRY = 'cloudsec.jfrog.io'
         DOCKER_REPO = 'admin-web'
         ARTIFACTORY_CREDENTIALS = credentials('jfrog')
