@@ -1,8 +1,9 @@
 name: DevSecOps Pipeline
+
 on:
   push:
     branches:
-      - main
+      - main  # Ensure this is your correct branch
 
 jobs: 
   sonarcloud:
@@ -20,12 +21,19 @@ jobs:
 
   zap_scan:
     runs-on: ubuntu-latest
-    name: Scan the webapplication
+    name: Scan the web application
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: main  # Updated to 'main' to match your branch settings
+          fetch-depth: 0  # Full clone to avoid issues
+      - name: Retry Checkout if Failed
+        if: failure()
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.11.0
         with:
