@@ -21,12 +21,13 @@ jobs:
 
   zap_scan:
     runs-on: ubuntu-latest
-    name: Scan the web application
+    needs: security
+    name: Run DAST scan on the web application
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: master
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.6.1
         with:
