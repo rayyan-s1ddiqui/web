@@ -1,4 +1,4 @@
-FROM starkz09/web
+FROM starkz09/web:wordpress
 RUN apt-get update && apt-get install -y apache2
 WORKDIR /var/www/html
 copy . .
