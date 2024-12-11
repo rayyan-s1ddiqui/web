@@ -2,14 +2,14 @@ version: 0.2
 env:
   variables:
     PORT: 80
-    REPOSITORY_URI: "654654357080.dkr.ecr.us-east-1.amazonaws.com/web"
+    REPOSITORY_URI: "851725345977.dkr.ecr.us-east-1.amazonaws.com/wordpress"
 
 phases:
   pre_build:
     commands:
       - echo Logging into Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 654654357080.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 851725345977.dkr.ecr.us-east-1.amazonaws.com
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
@@ -22,4 +22,4 @@ phases:
       - echo build completed on `date`
       - echo Pushing the docker image...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - aws ecs update-service --cluster test --service web-service --force-new-deployment
+      - aws ecs update-service --cluster web --service web-service --force-new-deployment
