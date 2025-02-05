@@ -31,7 +31,7 @@ jobs:
         uses: snyk/actions/php@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          run: snyk test ./web
+          run: snyk test /
 
   zap_scan:
     name: ⚡ ZAP Full Scan (Final Step)
