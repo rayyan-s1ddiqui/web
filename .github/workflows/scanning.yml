@@ -29,9 +29,16 @@ jobs:
 
       - name: 🔎 Run Snyk Security Scan
         uses: snyk/actions/php@master
+        continue-on-error: true  # To make sure SARIF upload gets executed
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          run: snyk test /
+        with:
+          args: --sarif-file-output=snyk.sarif
+
+      - name: 📤 Upload Snyk result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: snyk.sarif
 
   zap_scan:
     name: ⚡ ZAP Full Scan (Final Step)
