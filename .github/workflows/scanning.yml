@@ -29,11 +29,25 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
+
+      - name: 🕵️‍♂️ Run Dastardly Action Step
+        continue-on-error: true                        # This allows subsequent steps to run even if this step fails
+        uses: PortSwigger/dastardly-github-action@main
+        with:
+          target-url: 'https://ginandjuice.shop'
+
+      - name: 📝 Publish Test Report
+        if: always()                                    # Forces this step to always run
+        uses: mikepenz/action-junit-report@v3
+        with:
+          report_paths: '**/dastardly-report.xml'       # You need to update this path if you pass in a different output filename to the Dastardly action
+          require_tests: true
+
       - name: 🕷️ Run ZAP Full Scan
         uses: zaproxy/action-full-scan@v0.12.0
         with:
           token: ${{ secrets.GIT_TOKEN }}
           docker_name: 'ghcr.io/zaproxy/zaproxy:stable' 
-          target: 'https://www.laitkor.com/'  # Replace with actual application URL
+          target: 'https://ginandjuice.shop'  # Replace with actual application URL
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'  # Additional ZAP options if required
