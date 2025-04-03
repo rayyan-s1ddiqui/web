@@ -17,7 +17,7 @@ jobs:
       - name: 🛠️ SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 🔑 Required for PR details
+          GITHUB_TOKEN: ${{ secrets.G1THUB_TOKEN }}  # 🔑 Required for PR details
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
 
   zap_scan:
